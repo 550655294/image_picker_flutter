@@ -19,17 +19,16 @@ class ImagePicker {
   }
 
   ///单选图片
-  static void singlePicker(
-    BuildContext context, {
-    ImagePickerType type = ImagePickerType.imageAndVideo,
-    Language language,
-    ImageProvider placeholder,
-    Widget back,
-    Decoration decoration,
-    Color appBarColor = Colors.blue,
-    Widget emptyView,
-    SingleCallback singleCallback,
-  }) {
+  static void singlePicker(BuildContext context,
+      {ImagePickerType type = ImagePickerType.imageAndVideo,
+      Language language,
+      ImageProvider placeholder,
+      Widget back,
+      Decoration decoration,
+      Color appBarColor = Colors.blue,
+      Widget emptyView,
+      SingleCallback singleCallback,
+      bool useRootNavigator = true}) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => SingleImagePickerPage(
@@ -40,6 +39,7 @@ class ImagePicker {
           appBarColor: appBarColor ?? Colors.blue,
           back: back,
           emptyView: emptyView,
+          useRootNavigator: useRootNavigator,
         ),
       ),
     )..then((data) {
@@ -50,20 +50,19 @@ class ImagePicker {
   }
 
   ///多选图片
-  static void mulPicker(
-    BuildContext context, {
-    List<AssetData> data,
-    ImagePickerType type = ImagePickerType.imageAndVideo,
-    int limit = 9,
-    Language language,
-    ImageProvider placeholder,
-    Widget back,
-    Widget menu,
-    Decoration decoration,
-    Color appBarColor = Colors.blue,
-    Widget emptyView,
-    MulCallback mulCallback,
-  }) {
+  static void mulPicker(BuildContext context,
+      {List<AssetData> data,
+      ImagePickerType type = ImagePickerType.imageAndVideo,
+      int limit = 9,
+      Language language,
+      ImageProvider placeholder,
+      Widget back,
+      Widget menu,
+      Decoration decoration,
+      Color appBarColor = Colors.blue,
+      Widget emptyView,
+      MulCallback mulCallback,
+      bool useRootNavigator = true}) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => MulImagePickerPage(
@@ -77,6 +76,7 @@ class ImagePicker {
           menu: menu,
           back: back,
           emptyView: emptyView,
+          useRootNavigator: useRootNavigator,
         ),
       ),
     )..then((data) {

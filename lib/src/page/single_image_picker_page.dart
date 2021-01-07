@@ -17,17 +17,19 @@ class SingleImagePickerPage extends StatefulWidget {
   final ImageProvider placeholder;
   final Color appBarColor;
   final Widget emptyView;
+  final bool useRootNavigator;
 
-  const SingleImagePickerPage({
-    Key key,
-    this.type = ImagePickerType.imageAndVideo,
-    this.back,
-    this.decoration,
-    this.language,
-    this.placeholder,
-    this.appBarColor = Colors.blue,
-    this.emptyView,
-  }) : super(key: key);
+  const SingleImagePickerPage(
+      {Key key,
+      this.type = ImagePickerType.imageAndVideo,
+      this.back,
+      this.decoration,
+      this.language,
+      this.placeholder,
+      this.appBarColor = Colors.blue,
+      this.emptyView,
+      this.useRootNavigator = true})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -131,7 +133,8 @@ class SingleImagePickerPageState extends State<SingleImagePickerPage> {
         RawMaterialButton(
           constraints: BoxConstraints.expand(),
           onPressed: () {
-            LoadingDialog.showLoadingDialog(context);
+            LoadingDialog.showLoadingDialog(context,
+                useRootNavigator: widget?.useRootNavigator ?? true);
             Utils.convertSingleData(data).whenComplete(() {
               Navigator.of(context)..pop()..pop(data);
             });

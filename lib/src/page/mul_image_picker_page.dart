@@ -18,6 +18,7 @@ class MulImagePickerPage extends StatefulWidget {
   final Language language;
   final ImageProvider placeholder;
   final Widget emptyView;
+  final bool useRootNavigator;
 
   const MulImagePickerPage({
     Key key,
@@ -31,6 +32,7 @@ class MulImagePickerPage extends StatefulWidget {
     this.language,
     this.placeholder,
     this.emptyView,
+    this.useRootNavigator = true
   }) : super(key: key);
 
   @override
@@ -102,7 +104,7 @@ class MulImagePickerPageState extends State<MulImagePickerPage> {
               color: Colors.white,
             ),
         onSaveCallback: () {
-          LoadingDialog.showLoadingDialog(context);
+          LoadingDialog.showLoadingDialog(context,useRootNavigator: widget?.useRootNavigator??true);
           Utils.convertMulData(selectedData).whenComplete(() {
             Navigator.of(context)..pop()..pop(selectedData);
           });
